@@ -17,3 +17,6 @@ According to the Challenge, labels in the dataset already take the goal of predi
 First approach for solving early prediction of sepsis is to ignore the temporal component in the data. So each record can be treated as a single entity not dependent on any other record. This assumption might be flawed but for establishing a baseline, we are taking this assumption.<br/>
 
 Train : 30K Patients Test : 5K Patients Validation : 5K Patients
+#### Distribution of Dependent Variable
+In the training dataset, we have a very imbalanced dataset. In label 0 we have about 1147309 lines of data and label 1 we have about 22556 lines of data.
+![screenshot](img.JGP)
