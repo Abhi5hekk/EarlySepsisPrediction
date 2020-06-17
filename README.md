@@ -47,3 +47,5 @@ Finally, the preprocessing pipeline is integrated in a full prediction pipeline,
 * Gaussian mixture model
 * Multilayer Perceptron
 
+#### Results
+![Screenshot](img3.JPG)
