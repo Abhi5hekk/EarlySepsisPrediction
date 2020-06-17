@@ -49,3 +49,20 @@ Finally, the preprocessing pipeline is integrated in a full prediction pipeline,
 
 #### Results
 ![Screenshot](img3.JPG)
+## Feature Engineering
+#### Heart Rate
+Heart rate for a healthy adult is between 60 and 100. For a healthy infant it is between 70 and 190. Creating a new feature custom_hr , which is categorical variable having three values Normal, Abnormal and Missing.
+```python
+
+def feature_engineer_hr(train):
+    train.loc[(train['HR'] >= 100) & (train['Age'] >= 10 ),
+            'custom_hr'] = 'abnormal'
+    train.loc[(train['HR'] < 100) & (train['HR'] > 60) & (train['Age'] >= 10 ),
+            'custom_hr'] = 'normal'
+    train.loc[(train['HR'] >= 70) & (train['HR'] < 190) & (train['Age'] < 10 ),
+            'custom_hr'] = 'normal'
+    train.loc[((train['HR'] < 70) | (train['HR'] >= 190)) & (train['Age'] < 10 ),
+            'custom_hr'] = 'abnormal'
+    train['custom_hr'].fillna('Missing', inplace=True)
+    return train
+```
