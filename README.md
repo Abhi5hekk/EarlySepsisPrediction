@@ -20,3 +20,4 @@ Train : 30K Patients Test : 5K Patients Validation : 5K Patients
 #### Distribution of Dependent Variable
 In the training dataset, we have a very imbalanced dataset. In label 0 we have about 1147309 lines of data and label 1 we have about 22556 lines of data.<br/>
 ![Screenshot](img.JPG)
+As we can see from the plot, it is a case of severe class imbalance . There are multiple methods that we could try to balance it (Over sampling or Undersampling) or even proceed without balancing but change the evaluation metric to average precision or roc_auc_sore.
