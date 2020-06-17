@@ -21,3 +21,6 @@ Train : 30K Patients Test : 5K Patients Validation : 5K Patients
 In the training dataset, we have a very imbalanced dataset. In label 0 we have about 1147309 lines of data and label 1 we have about 22556 lines of data.<br/>
 ![Screenshot](img.JPG)<br/>
 As we can see from the plot, it is a case of severe class imbalance . There are multiple methods that we could try to balance it (Over sampling or Undersampling) or even proceed without balancing but change the evaluation metric to average precision or roc_auc_sore.
+#### Check For null in Features/ Independent variables
+![Screenshot](img1.JPG)<br/>
+We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.
