@@ -25,3 +25,15 @@ As we can see from the plot, it is a case of severe class imbalance . There are 
 #### Check For null in Features/ Independent variables
 ![Screenshot](img1.JPG)<br/>
 We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.
+## Baseline
+The Features which are used for basleline. No Feature engineering has been done yet.
+```python
+cont_scale_pipeline = make_pipeline(SimpleImputer(strategy = "median"), 
+                                    StandardScaler())
+cat_pipeline = make_pipeline(SimpleImputer(strategy = "constant", 
+                                           fill_value = 999), 
+                             OneHotEncoder(handle_unknown="ignore"))
+preprocess_trans_scale = make_column_transformer((cont_scale_pipeline, 
+                                                  ~categorical), 
+                                                 (cat_pipeline, categorical))
+```
