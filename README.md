@@ -13,4 +13,4 @@ For this study, we use clinical data of ICU patients from two separate hospital 
 According to the Challenge, labels in the dataset already take the goal of predicting Sepsis. The label for each hour of patient data is 1 (Sepsis onset positive) or 0 (Sepsis onset negative). Summarized from the labels, we have a very imbalanced dataset.
 Class 0 -> 1146063
 Class 1 -> 22421
-![Screenshot](image.JPG)
+![Screenshot](img.JPG)
