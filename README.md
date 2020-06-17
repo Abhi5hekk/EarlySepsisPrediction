@@ -25,6 +25,21 @@ As we can see from the plot, it is a case of severe class imbalance . There are 
 #### Check For null in Features/ Independent variables
 ![Screenshot](img1.JPG)<br/>
 We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.
+After removing some features: 'HR',
+ 'O2Sat',
+ 'Temp',
+ 'SBP',
+ 'MAP',
+ 'DBP',
+ 'Resp',
+ 'FiO2',
+ 'Glucose',
+ 'Age',
+ 'HospAdmTime',
+ 'ICULOS',
+ 'Gender',
+ 'Unit1',
+ 'Unit2'
 ## Baseline
 The Features which are used for basleline. No Feature engineering has been done yet. We create the preprocessing pipelines for both numeric and categorical data.
 ```python
@@ -66,3 +81,15 @@ def feature_engineer_hr(train):
     train['custom_hr'].fillna('Missing', inplace=True)
     return train
 ```
+#### Temperature
+Temperature for a healthy human being is between 36.4 degree C to 37.6 degree C. Creating a new feature custom_temp , which is categorical variable having three values Normal, Abnormal and Missing
+```python 
+def feature_engineer_temp(train):
+    train.loc[(train['Temp'] >= 36.4) & (train['Temp'] < 37.6), 
+            'custom_temp'] = 'normal'
+    train.loc[(train['Temp'] < 36.4) | (train['Temp'] >= 37.6), 
+            'custom_temp'] = 'abnormal'
+
+    train['custom_temp'].fillna('Missing', inplace=True)
+    return train
+ ```
