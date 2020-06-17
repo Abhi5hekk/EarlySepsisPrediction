@@ -175,3 +175,29 @@ def feature_engineer_resp_rate(train):
 
     return train
 ```
+#### Feature Selection
+According to the CDC website heart rate, fever and BP are the most important signs of sepsis. So selecting these features with the same intution
+```python
+filtered_columns = ['Gender', 'custom_hr', 'custom_temp','custom_age', 
+                    'custom_o2stat', 'custom_bp','custom_resp' ,'ICULOS', 
+                    'HospAdmTime']
+```
+
+## Final Results
+Finally, after fearture engineering again the preprocessing pipeline is integrated in a full prediction pipeline, together with a simple classification models:
+* Logistic Regression
+* Decision Tree
+* Random Forest<br/>
+And Grid-search is used to find the optimal hyperparameters of a models which results in the most 'accurate' predictions.
+
+|  Model   | Recall | Precision | Avg. precision |
+|----------|--------|-----------|----------------|
+|Logistic Regression|0.005603|0.075377|0.014346|
+|Decision Tree|0.084796|0.048901|0.016961|
+|Randon Forest|0.027269|0.059543|0.015244|
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+## Author
