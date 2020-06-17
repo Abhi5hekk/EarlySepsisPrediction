@@ -7,3 +7,5 @@ Sepsis is a life-threatening illness caused by your body’s response to an infe
 ## Project Objective
 The objective of this project is to early detect sepsis (6 hours ahead) utilizing physiological information. The sources of info are patients' data, including imperative signs, research center qualities and demographics. The output is the results whether the model predicts non-Sepsis patients or Sepsis patients six hours in front of clinical beginning time.
 
+## Dataset
+
