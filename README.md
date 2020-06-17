@@ -24,8 +24,8 @@ In the training dataset, we have a very imbalanced dataset. In label 0 we have a
 As we can see from the plot, it is a case of severe class imbalance . There are multiple methods that we could try to balance it (Over sampling or Undersampling) or even proceed without balancing but change the evaluation metric to average precision or roc_auc_sore.
 #### Check For null in Features/ Independent variables
 ![Screenshot](img1.JPG)<br/>
-We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.
-After removing some features: 'HR',
+We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.<br/>
+Remaining features: 'HR',
  'O2Sat',
  'Temp',
  'SBP',
@@ -82,7 +82,7 @@ def feature_engineer_hr(train):
     return train
 ```
 #### Temperature
-Temperature for a healthy human being is between 36.4 degree C to 37.6 degree C. Creating a new feature custom_temp , which is categorical variable having three values Normal, Abnormal and Missing
+Temperature for a healthy human being is between 36.4 degree C to 37.6 degree C. Creating a new feature custom_temp , which is categorical variable having three values Normal, Abnormal and Missing.
 ```python 
 def feature_engineer_temp(train):
     train.loc[(train['Temp'] >= 36.4) & (train['Temp'] < 37.6), 
@@ -93,3 +93,85 @@ def feature_engineer_temp(train):
     train['custom_temp'].fillna('Missing', inplace=True)
     return train
  ```
+#### Age
+Categorizing patient based on age to old, infant and Child/adult.
+```python
+def featuer_engineer_age(train):
+    train.loc[train['Age'] >=65, 'custom_age'] = 'old'
+    train.loc[train['Age'] <1, 'custom_age'] = 'infant'
+    train.loc[(train['Age'] >=1) & (train['Age'] <65), 
+            'custom_age'] = 'child/adult'
+    return train
+```
+#### O2Stat
+O2Stat for a healthy adult is between 90 and 100 for healthy human beings. Create a new categorical variable custom_o2stat with levels normal, abnormal and missing.
+```python
+def feature_engineer_o2stat(train):
+    train.loc[(train['O2Sat'] >= 90) & (train['O2Sat'] < 100), 
+            'custom_o2stat'] = 'normal'
+    train.loc[(train['O2Sat'] < 90) & (train['O2Sat'] >= 0), 
+            'custom_o2stat'] = 'abnormal'
+
+    train['custom_o2stat'].fillna('Missing', inplace=True)
+    return train
+```
+#### SBP and DBP
+SBP stands for Systolic blood pressure, It is the upper number while measuring Blood pressure. DBP stands for Diastolic blood pressure , It is the lower number while measuring Blood pressure. Using both these columns to categorize blood pressure as low, normal, elevated , high and missing.
+```python
+def feature_engineer_blood_pressure(train):
+    train.loc[(train['SBP'] <90) & (train['DBP'] <60), 'custom_bp'] = 'low'
+
+    train.loc[(train['SBP'].between(90,120, inclusive=True)) & 
+            (train['DBP'].between(60,80, inclusive=True)), 
+            'custom_bp'] = 'normal'
+
+
+    train.loc[(train['SBP'].between(120,140, inclusive=True)) & 
+            (train['DBP'].between(80,90, inclusive=True)), 
+            'custom_bp'] = 'elevated'
+
+
+    train.loc[(train['SBP'] > 140 ) & 
+            (train['DBP'] > 90 ), 'custom_bp'] = 'high'
+
+    train['custom_bp'].fillna('Missing', inplace=True)
+    return train
+ ```
+#### Respiration Rate
+Respiration rate for healthy adults is between 12 and 20. Categorizing respiratory rate as normal and abnormal based on thresholds.
+```python
+def feature_engineer_resp_rate(train):
+    train.loc[(train['Resp'].between(30,60)) & (train['Age'] <1), 
+            'custom_resp'] = 'normal'
+    train.loc[((train['Resp'] < 30) | (train['Resp'] > 60)) & 
+             (train['Age'] <1) ,'custom_resp'] = 'abnormal'
+
+
+    train.loc[(train['Resp'].between(24,40)) & (train['Age'].between(1,3)), 
+            'custom_resp'] = 'normal'
+    train.loc[((train['Resp'] < 24) | (train['Resp'] > 40)) & 
+             (train['Age'].between(1,3)) ,'custom_resp'] = 'abnormal'
+
+
+    train.loc[(train['Resp'].between(22,34)) & (train['Age'].between(3,6)), 
+            'custom_resp'] = 'normal'
+    train.loc[((train['Resp'] < 22) | (train['Resp'] > 34)) & 
+             (train['Age'].between(3,6)) ,'custom_resp'] = 'abnormal'
+
+
+    train.loc[(train['Resp'].between(18,30)) & (train['Age'].between(6,12)), 
+            'custom_resp'] = 'normal'
+    train.loc[((train['Resp'] < 18) | (train['Resp'] > 30)) & 
+             (train['Age'].between(6,12)) ,'custom_resp'] = 'abnormal'
+
+
+    train.loc[(train['Resp'].between(12,20)) & (train['Age'] >12), 
+            'custom_resp'] = 'normal'
+    train.loc[((train['Resp'] < 12) | (train['Resp'] > 20)) & (train['Age'] >12),
+            'custom_resp'] = 'abnormal'
+
+    train['custom_resp'].fillna('Missing', inplace=True)
+
+
+    return train
+```
