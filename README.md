@@ -26,7 +26,7 @@ As we can see from the plot, it is a case of severe class imbalance . There are 
 ![Screenshot](img1.JPG)<br/>
 We see that most of the columns have 90% + missing data. There are multiple ways of dealing with it. To establish a concrete baseline, I have decided to remove features with 90 % or more missing data.
 ## Baseline
-The Features which are used for basleline. No Feature engineering has been done yet.
+The Features which are used for basleline. No Feature engineering has been done yet. We create the preprocessing pipelines for both numeric and categorical data.
 ```python
 cont_scale_pipeline = make_pipeline(SimpleImputer(strategy = "median"), 
                                     StandardScaler())
@@ -37,3 +37,6 @@ preprocess_trans_scale = make_column_transformer((cont_scale_pipeline,
                                                   ~categorical), 
                                                  (cat_pipeline, categorical))
 ```
+Above code illustrates how to apply different preprocessing and feature extraction pipelines to different subsets of features, using column transformation. This is particularly handy for the case of datasets that contain heterogeneous data types, since we may want to scale the numeric features and one-hot encode the categorical ones.
+In this code, the numeric data is standard-scaled after median-imputation, while the categorical data is one-hot encoded after imputing missing values with a new category ('999').
+Finally, the preprocessing pipeline is integrated in a full prediction pipeline using sklearn.pipeline.Pipeline, together with a simple classification model.
