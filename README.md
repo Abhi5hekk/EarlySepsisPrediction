@@ -201,3 +201,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 ## Author
+[ABHISHEK KUMAR](https://github.com/Abhi5hekk/) 16074002
+[RISHIKA RATHORE](https://github.com/Rishika-Rathore/) 17045084
+BHANU PRAKASH 16074004
