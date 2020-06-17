@@ -18,5 +18,5 @@ First approach for solving early prediction of sepsis is to ignore the temporal 
 
 Train : 30K Patients Test : 5K Patients Validation : 5K Patients
 #### Distribution of Dependent Variable
-In the training dataset, we have a very imbalanced dataset. In label 0 we have about 1147309 lines of data and label 1 we have about 22556 lines of data.
+In the training dataset, we have a very imbalanced dataset. In label 0 we have about 1147309 lines of data and label 1 we have about 22556 lines of data.<br/>
 ![Screenshot](img.JGP)
