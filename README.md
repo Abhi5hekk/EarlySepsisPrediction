@@ -197,7 +197,7 @@ And Grid-search is used to find the optimal hyperparameters of a models which re
 |Randon Forest|0.027269|0.059543|0.015244|
 
 ## Future Work
-In Future, we will going to perposed Deep Learning Models.
+In Future, we will going to proposed Deep Learning Models.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
